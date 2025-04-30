@@ -4,40 +4,23 @@ export class CreateGenreTable1745986308437 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
-            CREATE TABLE genre (
+            CREATE TABLE "genre" (
                 id SERIAL PRIMARY KEY,
                 user_id INTEGER NOT NULL,
                 category VARCHAR(255) NOT NULL,
                 description TEXT,
                 created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-  
-                CONSTRAINT fk_user
-                    FOREIGN KEY(user_id) 
-                    REFERENCES Users(id)
+
+                CONSTRAINT fk_genre_user
+                    FOREIGN KEY(user_id)
+                    REFERENCES "users"(id) -- <<< FIX HERE: Change "Users" to "users"
                     ON DELETE CASCADE
             );
           `);
-          
-        // Add foreign key constraint to film table
-        await queryRunner.query(`
-            ALTER TABLE film
-            ADD CONSTRAINT fk_genre
-            FOREIGN KEY (genre_id)
-            REFERENCES genre(id)
-            ON DELETE SET NULL;
-        `);
-
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`
-            ALTER TABLE film
-            DROP CONSTRAINT IF EXISTS fk_genre;
-        `);
-        
-        await queryRunner.query(`DROP TABLE genre;`);
-
+        await queryRunner.query(`DROP TABLE IF EXISTS "genre";`);
     }
-
 }
