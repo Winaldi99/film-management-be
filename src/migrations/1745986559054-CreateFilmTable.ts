@@ -4,7 +4,7 @@ export class CreateFilmTable1745986559054 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
-            CREATE TABLE books (
+            CREATE TABLE film (
                 id SERIAL PRIMARY KEY,
                 user_id INTEGER NOT NULL,
                 title VARCHAR(255) NOT NULL,
