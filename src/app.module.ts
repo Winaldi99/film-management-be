@@ -11,6 +11,7 @@ import { UserModule } from './user/user.module';
 import { PostModule } from './post/post.module';
 import { GenreModule } from './genre/genre.module';
 import { FilmModule } from './film/film.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
   imports: [
@@ -37,7 +38,8 @@ import { FilmModule } from './film/film.module';
     UserModule,
     PostModule,
     GenreModule,
-    FilmModule
+    FilmModule,
+    CommentModule
   ],
   controllers: [AppController],
   providers: [
