@@ -5,7 +5,7 @@ export class CreateGenreDTO {
   @IsString()
   @IsNotEmpty()
   @ApiProperty()
-  category: string;
+  name: string;
 
   @IsString()
   @IsNotEmpty()

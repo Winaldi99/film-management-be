@@ -4,10 +4,13 @@ import {
     Entity,
     PrimaryGeneratedColumn,
     UpdateDateColumn,
+    ManyToOne,
+    JoinColumn,
   } from 'typeorm';
+  import { Film } from '../film/film.entity';
   
-  @Entity('genre')
-  export class Genre {
+  @Entity('comment')
+  export class Comment {
     @PrimaryGeneratedColumn()
     id: number;
   
@@ -15,10 +18,14 @@ import {
     user_id: number;
   
     @Column()
-    name: string;
+    film_id: number;
+  
+    @ManyToOne(() => Film)
+    @JoinColumn({ name: 'film_id' })
+    film: Film;
   
     @Column()
-    description: string;
+    comment: string;
   
     @CreateDateColumn()
     created_at: Date;

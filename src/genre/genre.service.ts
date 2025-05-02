@@ -1,24 +1,24 @@
 import { Injectable } from '@nestjs/common';
-import { Genre } from './genre.entity'; // <-- Ganti nama file dan class entity
+import { Genre } from './genre.entity';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
-export class GenreService { // <-- Ganti nama class service
+export class GenreService {
   constructor(
-    @InjectRepository(Genre) private genreRepository: Repository<Genre>, // <-- Ganti entity dan nama repository
+    @InjectRepository(Genre) private genreRepository: Repository<Genre>,
   ) {}
 
-  async save(genre: Genre): Promise<Genre> { // <-- Ganti parameter dan return type
-    return this.genreRepository.save(genre); // <-- Ganti repository dan parameter
+  async save(genre: Genre): Promise<Genre> {
+    return this.genreRepository.save(genre);
   }
 
   async findByUserId(
     userId: number,
     page: number,
     limit: number,
-  ): Promise<Genre[]> { // <-- Ganti return type
-    return await this.genreRepository.find({ // <-- Ganti repository
+  ): Promise<Genre[]> {
+    return await this.genreRepository.find({
       where: { user_id: userId },
       skip: (page - 1) * limit,
       take: limit,
@@ -28,45 +28,40 @@ export class GenreService { // <-- Ganti nama class service
     });
   }
 
-  async findAll(): Promise<Genre[]> { // <-- Ganti return type
-    return await this.genreRepository.find({ // <-- Ganti repository
+  async findAll(): Promise<Genre[]> {
+    return await this.genreRepository.find({
       order: {
-        category: 'ASC', // Asumsi 'name' masih relevan untuk Genre
+        name: 'ASC',
       },
     });
   }
 
-  // Nama method bisa diubah agar lebih deskriptif, tapi mengikuti pola perubahan:
-  async findByUserIdAndGenreId(userId: number, genreId: number): Promise<Genre> { // <-- Ganti nama method, parameter, dan return type
-    const genre = await this.genreRepository.findOne({ // <-- Ganti nama variabel dan repository
+  async findByUserIdAndGenreId(userId: number, genreId: number): Promise<Genre> {
+    const genre = await this.genreRepository.findOne({
       where: {
         user_id: userId,
-        id: genreId, // <-- Ganti parameter
+        id: genreId,
       },
     });
-    if (!genre) { // <-- Ganti nama variabel
-      // Pertimbangkan cara handle jika tidak ditemukan. Mungkin throw error atau return null.
-      // Mengembalikan instance baru mungkin tidak ideal.
-      // Untuk konsistensi perubahan, kita ganti ke new Genre(), tapi perhatikan implikasinya.
-      return new Genre(); // <-- Ganti entity
+    if (!genre) {
+      return new Genre();
     }
-    return genre; // <-- Ganti nama variabel
+    return genre;
   }
 
-  async findById(genreId: number): Promise<Genre> { // <-- Ganti parameter dan return type
-    const genre = await this.genreRepository.findOne({ // <-- Ganti nama variabel dan repository
-      where: { id: genreId } // <-- Ganti parameter
+  async findById(genreId: number): Promise<Genre> {
+    const genre = await this.genreRepository.findOne({
+      where: { id: genreId }
     });
-
-    if (!genre) { // <-- Ganti nama variabel
-      // Sama seperti di atas, pertimbangkan penanganan jika tidak ditemukan
-      return new Genre(); // <-- Ganti entity
+    
+    if (!genre) {
+      return new Genre();
     }
-
-    return genre; // <-- Ganti nama variabel
+    
+    return genre;
   }
 
-  async deleteById(genreId: number) { // <-- Ganti parameter
-    await this.genreRepository.delete({ id: genreId }); // <-- Ganti repository dan parameter
+  async deleteById(genreId: number) {
+    await this.genreRepository.delete({ id: genreId });
   }
 }
