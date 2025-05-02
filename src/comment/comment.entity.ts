@@ -33,3 +33,4 @@ import {
     @UpdateDateColumn()
     updated_at: Date;
   }
+  
