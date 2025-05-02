@@ -18,7 +18,7 @@ import {
   import { ApiParam, ApiQuery, ApiTags } from '@nestjs/swagger'; // <-- Ditambahkan ApiTags
   import { GenreService } from '../genre/genre.service'; // <-- Ganti nama service terkait
   
-  @ApiTags('Film') // <-- Tag untuk Swagger
+  @ApiTags('film') // <-- Tag untuk Swagger
   @Controller('film') // <-- Ganti route controller
   export class FilmController { // <-- Ganti nama class controller
     constructor(
