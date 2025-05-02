@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class CreateGenreTable1746159426980 implements MigrationInterface {
+export class CreateGenreTable1746161132274 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
@@ -11,7 +11,7 @@ export class CreateGenreTable1746159426980 implements MigrationInterface {
                 description TEXT,
                 created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-  
+        
                 CONSTRAINT fk_user
                     FOREIGN KEY(user_id) 
                     REFERENCES Users(id)

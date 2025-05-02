@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class CreateFilmTable1746159744247 implements MigrationInterface {
+export class CreateFilmTable1746160917983 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
@@ -13,13 +13,14 @@ export class CreateFilmTable1746159744247 implements MigrationInterface {
                 image_url TEXT,
                 created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-  
+        
                 CONSTRAINT fk_user
                     FOREIGN KEY(user_id) 
                     REFERENCES Users(id)
                     ON DELETE CASCADE
             );
         `);
+
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {

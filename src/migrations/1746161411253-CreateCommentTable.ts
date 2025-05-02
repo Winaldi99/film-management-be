@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class CreateCommentTable1746159875951 implements MigrationInterface {
+export class CreateCommentTable1746161411253 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`
@@ -11,7 +11,7 @@ export class CreateCommentTable1746159875951 implements MigrationInterface {
                 comment TEXT NOT NULL,
                 created_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
                 updated_at TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,
-  
+        
                 CONSTRAINT fk_user
                     FOREIGN KEY(user_id) 
                     REFERENCES Users(id)
@@ -20,7 +20,7 @@ export class CreateCommentTable1746159875951 implements MigrationInterface {
                 CONSTRAINT fk_film
                     FOREIGN KEY(film_id)
                     REFERENCES film(id)
-                    ON DELETE CASCADE,
+                    ON DELETE CASCADE
             );
         `);
     }
