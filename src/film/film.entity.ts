@@ -40,3 +40,4 @@ import {
     updated_at: Date;
   }
   
+  

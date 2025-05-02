@@ -3,7 +3,6 @@ import { FilmService } from './film.service'; // <-- Ganti nama file & class ser
 import { FilmController } from './film.controller'; // <-- Ganti nama file & class controller
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Film } from './film.entity'; // <-- Ganti nama file & class entity
-// Mengasumsikan Anda sudah mengubah CategoryModule menjadi GenreModule seperti permintaan sebelumnya:
 import { GenreModule } from '../genre/genre.module'; // <-- Ganti nama module terkait
 
 @Module({
